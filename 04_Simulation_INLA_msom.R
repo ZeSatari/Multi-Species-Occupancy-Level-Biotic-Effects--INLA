@@ -132,7 +132,7 @@ data_list_msom$scale_x_s2<- spat_data$scale_x_s^2
 
 
 # PC prior for the temporal autocorrelation
-h.spec <- list(rho = list(prior = 'pc.cor0', param = c(0.5, 0.3)))# پيشين ميدان
+h.spec <- list(rho = list(prior = 'pc.cor0', param = c(0.5, 0.3)))
 
 
 Q_species <- matrix(1, n_species, n_species)
@@ -151,11 +151,11 @@ diag(Q_species) <- 2
    model_msom <- inla(formula_species ,
                       data = data_list_14,
                       family = 'occupancy',
-                      control.fixed = list(prec = 1/2.72, prec.intercept = 1/2.72),#پيشين بتاها
+                      control.fixed = list(prec = 1/2.72, prec.intercept = 1/2.72),
                       control.compute = list(dic = TRUE, waic = TRUE, config = TRUE),
                       control.inla = list(int.strategy = "eb"),
                       verbose = FALSE,
-                      control.family = list(  #پيشين الفاها
+                      control.family = list(  
                         control.link = list(model = "logit"),
                         link.simple = "logit"
                       ))
@@ -1144,4 +1144,5 @@ ggplot(pred1, aes(x = x, y = y, fill = sd)) +
   coord_equal() +
   theme_maps
 dev.off()
+
 

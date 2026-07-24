@@ -1,78 +1,79 @@
-# Multi-Species Occupancy Models with Detection-Level Biotic Effects - INLA
+# Anonymous Code Repository
 
 ## Description
-This repository contains the complete code to reproduce all analyses, simulations, and figures from the paper:  
-**"Spatio-Temporal Multi-Species Occupancy Models with Detection-Level Biotic Effects Using INLA"**.
+
+This repository contains the R code required to reproduce the analyses presented in the associated manuscript.
 
 ## Repository Structure
 
--   `scripts/`: All R scripts, organized by analysis:
-    -   `01_Simulation_detect.R`: Generates synthetic data for the single-species occupancy model.
-    -   `02_Simulation_INLA_detect.R`: Runs the single-species occupancy model comparisons with detection-level biotic effects.
-    -   `03_Simulation_msom.R`: Generates synthetic data for the hierarchical Multi-Species Occupancy Model (MSOM).
-    -   `04_Simulation_INLA_msom.R`: Runs the hierarchical Multi-Species Occupancy Model comparisons.
-    -   `05_Real_detect.R`: Fits the single-species occupancy model with detection-level biotic effects.
-    -   `06_Real_msom.R`: Fits the hierarchical Multi-Species Occupancy Model (MSOM) to real data.
-    -   `07_Real_single.R`: Fits the single-species occupancy models to real data.
+- `scripts/`: R scripts used in the study.
+  - `01_Simulation_detect.R`: Simulates data for the single-species occupancy model with detection-level covariates.
+  - `02_Simulation_INLA_detect.R`: Fits the single-species occupancy models using INLA.
+  - `03_Simulation_msom.R`: Simulates data for the hierarchical multi-species occupancy model.
+  - `04_Simulation_INLA_msom.R`: Fits the hierarchical multi-species occupancy model using INLA.
+  - `05_Real_detect.R`: Applies the single-species occupancy model to the empirical dataset.
+  - `06_Real_msom.R`: Applies the hierarchical multi-species occupancy model to the empirical dataset.
+  - `07_Real_single.R`: Fits separate single-species occupancy models for comparison.
 
-### Empirical Data (Case Study)
-The real-world data used in the case study (Hubbard Brook bird surveys) were sourced from the `spOccupancy` R package.
- # Load the dataset
-    data(hbefTrends, package = "spOccupancy")
+## Empirical Data
 
-## Installation & Setup
-
-### 1. Install Required R Packages
-Run the following command in your R session to install all necessary dependencies:
+The empirical dataset used in the case study is publicly available through the **spOccupancy** R package.
 
 ```r
-install.packages(c("INLA", "inlabru", "ggplot2", "dplyr", "tidyr", "terra", "sf", "tidyverse",
-                   "spatstat", "gt", "viridis", "viridisLite", "scico", "patchwork", "fmesher",
-                   "timechange", "lubridate", "spOccupancy", "kableExtra"))
+data(hbefTrends, package = "spOccupancy")
+```
 
-Important Note: The INLA package is not on CRAN. Install it from its dedicated repository:
-install.packages("INLA", repos = c(getOption("repos"), INLA = "https://inla.r-inla-download.org/R/stable"))
+## Installation
 
+Install the required R packages:
 
-2. Reproduce the Analysis
-To replicate the main findings and figures from the paper, execute the scripts in order:
+```r
+install.packages(c(
+  "INLA", "inlabru", "ggplot2", "dplyr", "tidyr",
+  "terra", "sf", "tidyverse", "spatstat", "gt",
+  "viridis", "viridisLite", "scico", "patchwork",
+  "fmesher", "timechange", "lubridate",
+  "spOccupancy", "kableExtra"
+))
+```
 
-r
-# 1. Run the Single-Species simulation study: Detection-based biotic information
+Since **INLA** is not available on CRAN, install it from its official repository:
+
+```r
+install.packages(
+  "INLA",
+  repos = c(
+    getOption("repos"),
+    INLA = "https://inla.r-inla-download.org/R/stable"
+  )
+)
+```
+
+## Reproducing the Analysis
+
+Run the scripts in the following order:
+
+```r
+# Simulation study: detection-level effects
 source("scripts/01_Simulation_detect.R")
 source("scripts/02_Simulation_INLA_detect.R")
 
-
-# 2. Run the Multi-Species Simulation Study
+# Simulation study: hierarchical MSOM
 source("scripts/03_Simulation_msom.R")
 source("scripts/04_Simulation_INLA_msom.R")
 
-
-# 3. Run the real-world case study: Detection-based biotic information
+# Empirical analysis: single-species model
 source("scripts/05_Real_detect.R")
 
-
-# 4. Run the real-world case study: Multi-Species Occupancy Model
+# Empirical analysis: multi-species model
 source("scripts/06_Real_msom.R")
+
+# Separate single-species analyses
 source("scripts/07_Real_single.R")
+```
 
-##Citation
-This code supports the research presented in our manuscript on spatio-temporal multi-species occupancy modeling. The manuscript is currently under peer review.
+## License
 
-For now, if you use or adapt this code, please:
+This project is released under the MIT License.
 
-1- Acknowledge this GitHub repository
-
-2- Provide a link to this repo in your work
-
-3- Cite the associated publication once it becomes available
-
-##Contact
-For questions or issues regarding the code, please open an Issue on this GitHub repository or contact the corresponding author at: ze.satari@gmail.com.
-
-##License
-This project's code is released under the MIT License.
-
-
-
-
+Revise README
